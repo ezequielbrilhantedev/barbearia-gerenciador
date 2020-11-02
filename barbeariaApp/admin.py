@@ -1,3 +1,8 @@
 from django.contrib import admin
+from barbeariaApp.models import *
 
-# Register your models here.
+
+admin.site.register(Servico)
+admin.site.register(Funcionario)
+admin.site.register(Corte)
+admin.site.register(Barba)
