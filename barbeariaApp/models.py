@@ -11,6 +11,11 @@ cortes = [
     ('Degradê', 'Degradê')
 ]
 
+barba = [
+    ('Com Barba', 'Com Barba'),
+    ('Sem Barba', 'Sem Barba')
+]
+
 
 class Servico(models.Model):
     funcionario = models.ForeignKey('Funcionario', on_delete=models.CASCADE)
@@ -18,12 +23,12 @@ class Servico(models.Model):
         'Corte', on_delete=models.CASCADE)
     barba = models.ForeignKey('Barba', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.funcionario.nome
+
     class Meta:
         verbose_name = ("Serviço")
-        verbose_name_plural = ("Serviço")
-
-        def __str__(self):
-            return self.funcionario
+        verbose_name_plural = ("Serviços")
 
 
 class Funcionario(models.Model):
@@ -41,6 +46,7 @@ class Corte(models.Model):
 
 
 class Barba(models.Model):
-    barba = models.BooleanField(
-        'Barba', default=False, help_text='Assinala se irá escolher barba ou não'
-    )
+    barba = models.CharField('Barba', choices=barba, max_length=10)
+
+    def __str__(self):
+        return self.barba
